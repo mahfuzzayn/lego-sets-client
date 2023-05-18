@@ -1,3 +1,7 @@
 .nav-link-active {
     background-color: rgb(162, 212, 212);
 }
+
+.tooltip-bottom::before {
+    left: 100px;
+}

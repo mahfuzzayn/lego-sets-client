@@ -27,6 +27,7 @@ const Register = () => {
                 updateUserProfile(user, name, photoURL)
                     .then(() => {
                         setSuccess("Registration is done successfully.");
+                        form.reset();
                         // console.log(result);
                     })
                     .catch((error) => {

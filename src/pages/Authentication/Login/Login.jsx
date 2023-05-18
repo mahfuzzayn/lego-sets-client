@@ -24,6 +24,7 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 setSuccess("User logged in successfully.");
+                form.reset();
                 console.log(user);
             })
             .catch((error) => {

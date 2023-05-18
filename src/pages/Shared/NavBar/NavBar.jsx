@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import LegoLogo from "../../../assets/logos/Lego_logo.jpeg";
 import "./NavBar.css";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
+import { useValidateImageURL } from "use-validate-image-url";
+import { Tooltip } from "react-tooltip";
 
 const NavBar = () => {
+    const { user } = useContext(AuthContext);
+    const userPhotoUrlStatus = useValidateImageURL(user?.photoURL);
+
     const navLinks = (
         <>
             <li>
@@ -113,9 +120,36 @@ const NavBar = () => {
                 <ul className="menu menu-horizontal px-1">{navLinks}</ul>
             </div>
             <div className="navbar-end">
-                <Link to="/login" className="btn btn-accent">
-                    Login
-                </Link>
+                {user ? (
+                    userPhotoUrlStatus === "valid" ? (
+                        <>
+                            <span
+                                className="user-name-tooltip"
+                                data-tooltip-content={user?.displayName}
+                            >
+                                <img
+                                    src={user?.photoURL}
+                                    className="w-[40px] rounded-full"
+                                ></img>
+                            </span>
+                            <Tooltip anchorSelect=".user-name-tooltip" />
+                        </>
+                    ) : (
+                        <>
+                            <span
+                                className="user-name-tooltip"
+                                data-tooltip-content={user?.displayName}
+                            >
+                                <FaUserCircle className="text-[40px]"></FaUserCircle>
+                            </span>
+                            <Tooltip anchorSelect=".user-name-tooltip" />
+                        </>
+                    )
+                ) : (
+                    <Link to="/login" className="btn btn-accent">
+                        Login
+                    </Link>
+                )}
             </div>
         </div>
     );
