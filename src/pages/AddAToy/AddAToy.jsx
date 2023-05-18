@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-toastify";
+import useTitle from "../../hooks/useTitle";
 
 const AddAToy = () => {
     const { user } = useContext(AuthContext);
+    useTitle("Add A Toy");
 
     const handleAddAToy = (event) => {
         event.preventDefault();
@@ -12,7 +14,7 @@ const AddAToy = () => {
         const photoURL = form.photoURL.value;
         const name = form.name.value;
         const sellerName = user?.displayName;
-        const sellerEmail = user?.email;
+        const email = user?.email;
         const subCategory = form.subCategory.value;
         const price = form.price.value;
         const rating = form.rating.value;
@@ -23,7 +25,7 @@ const AddAToy = () => {
             photoURL,
             name,
             sellerName,
-            sellerEmail,
+            email,
             subCategory,
             price,
             rating,
