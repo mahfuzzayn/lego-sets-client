@@ -10,6 +10,7 @@ import MyToys from "../pages/MyToys/MyToys";
 import AllToys from "../pages/AllToys/AllToys";
 import Toy from "../pages/Toy/Toy";
 import UpdateToy from "../pages/UpdateToy/UpdateToy";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
@@ -74,7 +75,10 @@ const router = createBrowserRouter([
                     fetch(`http://localhost:5000/toy/${params.id}`),
             },
         ],
-    },
+    },{
+        path: "*",
+        element: <ErrorPage></ErrorPage>
+    }
 ]);
 
 export default router;

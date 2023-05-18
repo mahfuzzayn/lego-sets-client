@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-toastify";
 import useTitle from "../../hooks/useTitle";
@@ -14,8 +14,6 @@ const UpdateToy = () => {
         const form = event.target;
         const photoURL = form.photoURL.value;
         const name = form.name.value;
-        const sellerName = user?.displayName;
-        const email = user?.email;
         const subCategory = form.subCategory.value;
         const price = form.price.value;
         const rating = form.rating.value;
@@ -25,28 +23,25 @@ const UpdateToy = () => {
         const updatedToy = {
             photoURL,
             name,
-            sellerName,
-            email,
             subCategory,
             price,
             rating,
             quantity,
             description,
         };
-        console.log(updatedToy);
+        // console.log(updatedToy);
 
-        fetch("http://localhost:5000/add-a-toy", {
-            method: "patch",
+        fetch(`http://localhost:5000/all-toys/${toy._id}`, {
+            method: "PATCH",
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify(toy),
+            body: JSON.stringify(updatedToy),
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
-                if (data.insertedId) {
-                    form.reset();
+                // console.log(data);
+                if (data.modifiedCount > 0) {
                     toast.success(`${name} toy updated successfully.`, {
                         position: "bottom-right",
                         autoClose: 5000,
