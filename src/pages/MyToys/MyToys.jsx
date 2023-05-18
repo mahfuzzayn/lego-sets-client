@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import useTitle from "../../hooks/useTitle";
-import TableRow from "./TableRow";
+import MyToysTabRow from "./MyToysTabRow";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
     const { user } = useContext(AuthContext);
@@ -14,13 +15,29 @@ const MyToys = () => {
             .then((data) => setMyToys(data));
     }, []);
 
+    const handleToyDelete = (_id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch("http://localhost:5000/all-toys")
+            }
+        });
+    };
+
     return (
-        <div className="my-toys mt-[130px] mx-5">
+        <div className="my-toys mt-[50px] md:mt-[130px] mx-5">
             <div className="hero">
                 <div className="hero-content w-full flex-col">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl text-center font-bold">
-                            My Toys
+                        <h1 className="text-4xl md:text-5xl text-center font-bold">
+                            My Toys: {myToys.length}
                         </h1>
                     </div>
                 </div>
@@ -36,14 +53,18 @@ const MyToys = () => {
                             <th>Toy Name</th>
                             <th>Sub Category</th>
                             <th>Price</th>
-                            <th>Quantity</th>
+                            <th>Available Quantity</th>
                             <th>Rating</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {myToys.map((toy) => (
-                            <TableRow key={toy._id} toy={toy}></TableRow>
+                            <MyToysTabRow
+                                key={toy._id}
+                                toy={toy}
+                                handleToyDelete={handleToyDelete}
+                            ></MyToysTabRow>
                         ))}
                     </tbody>
                 </table>

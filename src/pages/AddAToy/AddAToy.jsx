@@ -61,11 +61,11 @@ const AddAToy = () => {
     };
 
     return (
-        <div className="add-a-toy mt-[130px] mx-5">
+        <div className="add-a-toy mt-[50px] md:mt-[100px] mx-5">
             <div className="hero">
                 <div className="hero-content w-full flex-col">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl text-center font-bold">
+                        <h1 className="text-4xl md:text-5xl text-center font-bold">
                             Add A Toy
                         </h1>
                     </div>
@@ -176,6 +176,7 @@ const AddAToy = () => {
                                         <input
                                             type="number"
                                             id="price"
+                                            min={1}
                                             placeholder="price"
                                             name="price"
                                             className="input input-bordered"
@@ -206,12 +207,13 @@ const AddAToy = () => {
                                 <div className="form-control">
                                     <label className="label" htmlFor="quantity">
                                         <span className="label-text">
-                                            Quantity
+                                            Available Quantity
                                         </span>
                                     </label>
                                     <input
                                         type="number"
                                         id="quantity"
+                                        min={1}
                                         placeholder="quantity"
                                         name="quantity"
                                         className="input input-bordered"

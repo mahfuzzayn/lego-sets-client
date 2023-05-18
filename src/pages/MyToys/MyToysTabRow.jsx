@@ -1,7 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useValidateImageURL } from "use-validate-image-url";
 
-const TableRow = ({ toy }) => {
+const MyToysTabRow = ({ toy, handleToyDelete, handleUpdateDelete }) => {
     const {
+        _id,
         photoURL,
         name,
         sellerName,
@@ -10,13 +13,16 @@ const TableRow = ({ toy }) => {
         price,
         rating,
         quantity,
-        description,
     } = toy;
+    const photoUrlStatus = useValidateImageURL(photoURL);
 
     return (
         <tr>
             <th>
-                <button className="btn btn-error btn-circle">
+                <button
+                    onClick={() => handleToyDelete(_id)}
+                    className="btn btn-error btn-circle"
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
@@ -37,10 +43,9 @@ const TableRow = ({ toy }) => {
                 <div className="flex items-center space-x-3">
                     <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
-                            <img
-                                src={photoURL}
-                                alt="Avatar Tailwind CSS Component"
-                            />
+                            {photoUrlStatus === "valid" && (
+                                <img src={photoURL} alt="Photo" />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -53,14 +58,16 @@ const TableRow = ({ toy }) => {
             </td>
             <td>{name}</td>
             <td>{subCategory}</td>
-            <td>{price}</td>
+            <td>${price}</td>
             <td>{quantity}</td>
             <td>{rating}</td>
             <td>
-                <button className="btn btn-accent">Update</button>
+                <Link to={`/update-toys/${_id}`}>
+                    <button className="btn btn-accent">Update</button>
+                </Link>
             </td>
         </tr>
     );
 };
 
-export default TableRow;
+export default MyToysTabRow;
