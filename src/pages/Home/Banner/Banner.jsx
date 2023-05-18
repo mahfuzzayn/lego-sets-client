@@ -4,6 +4,7 @@ const Banner = () => {
     return (
         <div className="banner mt-5">
             <div
+                data-aos="fade-up"
                 className="hero"
                 style={{
                     backgroundImage: `url("https://i.ibb.co/tLnSPjM/10-3018754.jpg")`,
