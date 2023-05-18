@@ -23,10 +23,12 @@ const Login = () => {
         logInUser(email, password)
             .then((result) => {
                 const user = result.user;
+                setSuccess("User logged in successfully.");
                 console.log(user);
             })
             .catch((error) => {
                 const message = error.message;
+                setError(message);
                 console.log(message);
             });
     };
@@ -86,6 +88,20 @@ const Login = () => {
                                         </a>
                                     </label>
                                 </div>
+                                {success && (
+                                    <label className="label">
+                                        <span className="label-text-alt text-green-500">
+                                            {success}
+                                        </span>
+                                    </label>
+                                )}
+                                {error && (
+                                    <label className="label">
+                                        <span className="label-text-alt text-red-500">
+                                            {error}
+                                        </span>
+                                    </label>
+                                )}
                                 <div className="form-control mt-2">
                                     <button className="btn btn-accent">
                                         Login
