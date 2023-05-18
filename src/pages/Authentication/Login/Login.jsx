@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ThirdPartyLogIn from "../ThirdPartyLogIn/ThirdPartyLogIn";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useTitle from "../../../hooks/useTitle";
@@ -8,7 +8,11 @@ const Login = () => {
     const { logInUser } = useContext(AuthContext);
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
-    useTitle("Login")
+    useTitle("Login");
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from.pathname || "/";
 
     const handleLogIn = (event) => {
         event.preventDefault();
@@ -28,6 +32,7 @@ const Login = () => {
                 setSuccess("User logged in successfully.");
                 form.reset();
                 console.log(user);
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 const message = error.message;
@@ -125,6 +130,7 @@ const Login = () => {
                             <ThirdPartyLogIn
                                 setSuccess={setSuccess}
                                 setError={setError}
+                                from={from}
                             ></ThirdPartyLogIn>
                         </div>
                     </div>

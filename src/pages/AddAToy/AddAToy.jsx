@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const AddAToy = () => {
     const { user } = useContext(AuthContext);
@@ -43,6 +44,16 @@ const AddAToy = () => {
                 console.log(data);
                 if (data.insertedId) {
                     form.reset();
+                    toast.success(`${name} toy added successfully.`, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                 }
             });
     };
@@ -161,7 +172,7 @@ const AddAToy = () => {
                                             </span>
                                         </label>
                                         <input
-                                            type="text"
+                                            type="number"
                                             id="price"
                                             placeholder="price"
                                             name="price"
@@ -179,8 +190,10 @@ const AddAToy = () => {
                                             </span>
                                         </label>
                                         <input
-                                            type="text"
+                                            type="number"
                                             id="rating"
+                                            min={0}
+                                            max={5}
                                             placeholder="rating"
                                             name="rating"
                                             className="input input-bordered"
@@ -195,7 +208,7 @@ const AddAToy = () => {
                                         </span>
                                     </label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         id="quantity"
                                         placeholder="quantity"
                                         name="quantity"
