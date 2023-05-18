@@ -1,24 +1,80 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LegoLogo from "../../../assets/logos/Lego_logo.jpeg";
+import "./NavBar.css";
 
 const NavBar = () => {
     const navLinks = (
         <>
             <li>
-                <Link to="/">Home</Link>
+                <NavLink
+                    to="/"
+                    className={({ isActive, isPending }) =>
+                        isPending
+                            ? "pending"
+                            : isActive
+                            ? "nav-link-active"
+                            : ""
+                    }
+                >
+                    Home
+                </NavLink>
             </li>
             <li>
-                <Link to="/all-toys">All Toys</Link>
+                <NavLink
+                    to="/all-toys"
+                    className={({ isActive, isPending }) =>
+                        isPending
+                            ? "pending"
+                            : isActive
+                            ? "nav-link-active"
+                            : ""
+                    }
+                >
+                    All Toys
+                </NavLink>
             </li>
             <li>
-                <Link to="/my-toys">My Toys</Link>
+                <NavLink
+                    to="/my-toys"
+                    className={({ isActive, isPending }) =>
+                        isPending
+                            ? "pending"
+                            : isActive
+                            ? "nav-link-active"
+                            : ""
+                    }
+                >
+                    My Toys
+                </NavLink>
             </li>
             <li>
-                <Link to="/add-a-toy">Add A Toy</Link>
+                <NavLink
+                    to="/add-a-toy"
+                    className={({ isActive, isPending }) =>
+                        isPending
+                            ? "pending"
+                            : isActive
+                            ? "nav-link-active"
+                            : ""
+                    }
+                >
+                    Add A Toy
+                </NavLink>
             </li>
             <li>
-                <Link to="/blogs">Blogs</Link>
+                <NavLink
+                    to="/blogs"
+                    className={({ isActive, isPending }) =>
+                        isPending
+                            ? "pending"
+                            : isActive
+                            ? "nav-link-active"
+                            : ""
+                    }
+                >
+                    Blogs
+                </NavLink>
             </li>
         </>
     );
