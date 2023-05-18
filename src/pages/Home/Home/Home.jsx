@@ -1,8 +1,8 @@
 import React from "react";
-import NavBar from "../../Shared/NavBar/NavBar";
-import Footer from "../../Shared/Footer/Footer";
+import useTitle from "../../../hooks/useTitle";
 
 const Home = () => {
+    useTitle("")
     return (
         <div className="home">        
         </div>

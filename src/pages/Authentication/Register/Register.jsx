@@ -2,11 +2,13 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ThirdPartyLogIn from "../ThirdPartyLogIn/ThirdPartyLogIn";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 
 const Register = () => {
     const { registerUser, updateUserProfile } = useContext(AuthContext);
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
+    useTitle("Register");
 
     const handleRegister = (event) => {
         event.preventDefault();
