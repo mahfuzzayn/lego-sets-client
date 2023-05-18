@@ -7,13 +7,25 @@ import Swal from "sweetalert2";
 const MyToys = () => {
     const { user } = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
+    const [loading, setLoading] = useState(true);
     useTitle("My Toys");
 
     useEffect(() => {
         fetch(`http://localhost:5000/my-toys?email=${user?.email}`)
             .then((res) => res.json())
-            .then((data) => setMyToys(data));
+            .then((data) => {
+                setMyToys(data);
+                setLoading(false);
+            });
     }, []);
+
+    if (loading) {
+        return (
+            <div className="progress-bar flex justify-center mt-[130px]">
+                <progress className="progress progress-accent w-56"></progress>
+            </div>
+        );
+    }
 
     const handleToyDelete = (_id) => {
         Swal.fire({
@@ -26,7 +38,24 @@ const MyToys = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch("http://localhost:5000/all-toys")
+                fetch(`http://localhost:5000/all-toys/${_id}`, {
+                    method: "DELETE",
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            const remaining = myToys.filter(
+                                (toy) => toy._id !== _id
+                            );
+                            setMyToys(remaining);
+                            Swal.fire(
+                                "Deleted!",
+                                "Your file has been deleted.",
+                                "success"
+                            );
+                        }
+                    });
             }
         });
     };

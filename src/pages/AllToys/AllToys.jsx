@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import AllToysTabRow from "./AllToysTabRow";
+import useTitle from "../../hooks/useTitle";
 
 const AllToys = () => {
-    const loadedToys = useLoaderData();
-    const [allToys, setAllToys] = useState(loadedToys);
+    const [allToys, setAllToys] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useTitle("All Toys");
+
+    useEffect(() => {
+        fetch("http://localhost:5000/all-toys")
+            .then((res) => res.json())
+            .then((data) => {
+                setAllToys(data);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="progress-bar flex justify-center mt-[130px]">
+                <progress className="progress progress-accent w-56"></progress>
+            </div>
+        );
+    }
 
     return (
         <div className="all-toys mt-[50px] md:mt-[100px] mx-5">

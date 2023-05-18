@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useValidateImageURL } from "use-validate-image-url";
 
-const MyToysTabRow = ({ toy, handleToyDelete, handleUpdateDelete }) => {
+const MyToysTabRow = ({ toy, handleToyDelete }) => {
     const {
         _id,
         photoURL,
@@ -62,7 +62,7 @@ const MyToysTabRow = ({ toy, handleToyDelete, handleUpdateDelete }) => {
             <td>{quantity}</td>
             <td>{rating}</td>
             <td>
-                <Link to={`/update-toys/${_id}`}>
+                <Link to={`/update-toy/${_id}`}>
                     <button className="btn btn-accent">Update</button>
                 </Link>
             </td>

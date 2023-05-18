@@ -2,6 +2,7 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import useTitle from "../../hooks/useTitle";
 
 const Toy = () => {
     const toy = useLoaderData();
@@ -17,6 +18,7 @@ const Toy = () => {
         description,
     } = toy;
     // console.log(toy);
+    useTitle(`Toy - ${name}`);
 
     return (
         <div className="toy mt-[50px] md:mt-[100px] mx-5">

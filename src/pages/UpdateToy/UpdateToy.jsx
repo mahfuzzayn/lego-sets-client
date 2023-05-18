@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-toastify";
 import useTitle from "../../hooks/useTitle";
 
-const AddAToy = () => {
+const UpdateToy = () => {
     const { user } = useContext(AuthContext);
-    useTitle("Add A Toy");
+    const toy = useLoaderData();
+    useTitle("Update Toy");
 
-    const handleUpdateToy = (event) => {
+    const handleAddAToy = (event) => {
         event.preventDefault();
         const form = event.target;
         const photoURL = form.photoURL.value;
@@ -21,7 +22,7 @@ const AddAToy = () => {
         const quantity = form.quantity.value;
         const description = form.description.value;
 
-        const toy = {
+        const updatedToy = {
             photoURL,
             name,
             sellerName,
@@ -32,10 +33,10 @@ const AddAToy = () => {
             quantity,
             description,
         };
-        // console.log(toy);
+        console.log(updatedToy);
 
         fetch("http://localhost:5000/add-a-toy", {
-            method: "POST",
+            method: "patch",
             headers: {
                 "content-type": "application/json",
             },
@@ -46,7 +47,7 @@ const AddAToy = () => {
                 console.log(data);
                 if (data.insertedId) {
                     form.reset();
-                    toast.success(`${name} toy added successfully.`, {
+                    toast.success(`${name} toy updated successfully.`, {
                         position: "bottom-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -66,12 +67,13 @@ const AddAToy = () => {
                 <div className="hero-content w-full flex-col">
                     <div className="text-center lg:text-left">
                         <h1 className="text-4xl md:text-5xl text-center font-bold">
-                            Add A Toy
+                            Update Toy{" "}
+                            <span className="text-accent">{toy?.name}</span>
                         </h1>
                     </div>
                     <div className="card w-full">
                         <div className="card-body">
-                            <form onSubmit={handleUpdateToy}>
+                            <form onSubmit={handleAddAToy}>
                                 <div className="form-control">
                                     <label
                                         className="label"
@@ -86,6 +88,7 @@ const AddAToy = () => {
                                         id="photo-url"
                                         placeholder="URL"
                                         name="photoURL"
+                                        defaultValue={toy?.photoURL}
                                         className="input input-bordered"
                                         required
                                     />
@@ -99,6 +102,7 @@ const AddAToy = () => {
                                         id="name"
                                         placeholder="toy name"
                                         name="name"
+                                        defaultValue={toy?.name}
                                         className="input input-bordered"
                                         required
                                     />
@@ -120,6 +124,7 @@ const AddAToy = () => {
                                             name="sellerName"
                                             className="input input-bordered"
                                             defaultValue={user?.displayName}
+                                            disabled
                                             required
                                         />
                                     </div>
@@ -139,6 +144,7 @@ const AddAToy = () => {
                                             name="email"
                                             className="input input-bordered"
                                             defaultValue={user?.email}
+                                            disabled
                                             required
                                         />
                                     </div>
@@ -156,7 +162,9 @@ const AddAToy = () => {
                                         className="select select-bordered font-medium"
                                         name="subCategory"
                                         id="sub-category"
-                                        defaultValue="Lego City"
+                                        defaultValue={
+                                            toy ? toy?.subCategory : "Lego City"
+                                        }
                                     >
                                         <option>Lego City</option>
                                         <option>Lego Star Wars</option>
@@ -179,6 +187,7 @@ const AddAToy = () => {
                                             min={1}
                                             placeholder="price"
                                             name="price"
+                                            defaultValue={toy?.price}
                                             className="input input-bordered"
                                             required
                                         />
@@ -199,6 +208,7 @@ const AddAToy = () => {
                                             max={5}
                                             placeholder="rating"
                                             name="rating"
+                                            defaultValue={toy?.rating}
                                             className="input input-bordered"
                                             required
                                         />
@@ -216,6 +226,7 @@ const AddAToy = () => {
                                         min={1}
                                         placeholder="quantity"
                                         name="quantity"
+                                        defaultValue={toy?.quantity}
                                         className="input input-bordered"
                                         required
                                     />
@@ -233,6 +244,7 @@ const AddAToy = () => {
                                         className="textarea textarea-bordered h-24 text-[16px]"
                                         name="description"
                                         placeholder="description"
+                                        defaultValue={toy?.description}
                                         required
                                     ></textarea>
                                 </div>
@@ -250,4 +262,4 @@ const AddAToy = () => {
     );
 };
 
-export default AddAToy;
+export default UpdateToy;
