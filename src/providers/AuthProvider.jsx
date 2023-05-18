@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     };
 
-    const signInWithGoogle = () => {
+    const googleSignIn = () => {
         return signInWithPopup(auth, googleAuthProvider);
     };
 
@@ -41,14 +41,11 @@ const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        const unsubscribe = () => {
-            onAuthStateChanged(auth, (currentUser) => {
-                setUser(currentUser);
-                setLoading(false);
-                console.log(currentUser);
-            });
-        };
-
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log(currentUser);
+            setUser(currentUser);
+            setLoading(false);
+        });
         return () => {
             unsubscribe();
         };
@@ -58,7 +55,7 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         logInUser,
-        signInWithGoogle,
+        googleSignIn,
         registerUser,
         updateUserProfile,
     };

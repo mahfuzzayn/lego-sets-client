@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const ThirdPartyLogIn = ({ setSuccess, setError }) => {
-    const { signInWithGoogle } = useContext(AuthContext);
+    const { googleSignIn } = useContext(AuthContext);
     const handleGoogleSignIn = () => {
-        signInWithGoogle()
+        googleSignIn()
             .then((result) => {
                 const user = result.user;
                 setSuccess("User successfully signed in using Google.");

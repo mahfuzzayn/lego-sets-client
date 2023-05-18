@@ -42,10 +42,24 @@ const ShopByCategory = () => {
                     </TabList>
                     <div className="mt-4">
                         <TabPanel>
-                            <div>
-                                <h2>Police Station</h2>
+                            <div className="toys">
+                                <div className="toy">
+                                    <h2>Police Station</h2>
+                                    <img
+                                        src="https://i.ibb.co/ZmkxzHP/police-station.jpg"
+                                        className="w-40"
+                                        alt=""
+                                    />
+                                </div>
+                                <div>
+                                    <h2>Hospital</h2>
+                                    <img
+                                        src="https://i.ibb.co/s5K5gvz/hospital.jpg"
+                                        className="w-40"
+                                        alt=""
+                                    />
+                                </div>
                             </div>
-                            <div></div>
                         </TabPanel>
                         <TabPanel>
                             <h2>Any content 2</h2>
