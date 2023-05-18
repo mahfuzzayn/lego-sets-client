@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
-const ThirdPartyLogIn = () => {
-    const handleGoogleSignIn = () => {};
+const ThirdPartyLogIn = ({ setSuccess, setError }) => {
+    const { signInWithGoogle } = useContext(AuthContext);
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then((result) => {
+                const user = result.user;
+                setSuccess("User successfully signed in using Google.");
+                console.log(user);
+            })
+            .catch((error) => {
+                const message = error.message;
+                setError(message);
+                console.log(message);
+            });
+    };
 
     return (
         <div className="third-party-login">

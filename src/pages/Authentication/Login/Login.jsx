@@ -119,8 +119,11 @@ const Login = () => {
                                         </span>
                                     </label>
                                 </div>
-                                <ThirdPartyLogIn></ThirdPartyLogIn>
                             </form>
+                            <ThirdPartyLogIn
+                                setSuccess={setSuccess}
+                                setError={setError}
+                            ></ThirdPartyLogIn>
                         </div>
                     </div>
                 </div>

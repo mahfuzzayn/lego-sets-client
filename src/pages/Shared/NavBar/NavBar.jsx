@@ -41,34 +41,38 @@ const NavBar = () => {
                     All Toys
                 </NavLink>
             </li>
-            <li>
-                <NavLink
-                    to="/my-toys"
-                    className={({ isActive, isPending }) =>
-                        isPending
-                            ? "pending"
-                            : isActive
-                            ? "nav-link-active"
-                            : ""
-                    }
-                >
-                    My Toys
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
-                    to="/add-a-toy"
-                    className={({ isActive, isPending }) =>
-                        isPending
-                            ? "pending"
-                            : isActive
-                            ? "nav-link-active"
-                            : ""
-                    }
-                >
-                    Add A Toy
-                </NavLink>
-            </li>
+            {user && (
+                <>
+                    <li>
+                        <NavLink
+                            to="/my-toys"
+                            className={({ isActive, isPending }) =>
+                                isPending
+                                    ? "pending"
+                                    : isActive
+                                    ? "nav-link-active"
+                                    : ""
+                            }
+                        >
+                            My Toys
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/add-a-toy"
+                            className={({ isActive, isPending }) =>
+                                isPending
+                                    ? "pending"
+                                    : isActive
+                                    ? "nav-link-active"
+                                    : ""
+                            }
+                        >
+                            Add A Toy
+                        </NavLink>
+                    </li>
+                </>
+            )}
             <li>
                 <NavLink
                     to="/blogs"
