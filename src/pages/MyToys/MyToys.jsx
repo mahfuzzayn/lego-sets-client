@@ -3,11 +3,18 @@ import { AuthContext } from "../../providers/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import MyToysTabRow from "./MyToysTabRow";
 import Swal from "sweetalert2";
+import {
+    FaRandom,
+    FaSortAmountDown,
+    FaSortAmountDownAlt,
+    FaSortDown,
+} from "react-icons/fa";
 
 const MyToys = () => {
     const { user } = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [currentSortingType, setCurrentSortingType] = useState("default");
     useTitle("My Toys");
 
     useEffect(() => {
@@ -60,6 +67,21 @@ const MyToys = () => {
         });
     };
 
+    const handleSort = (type) => {
+        if (currentSortingType !== type) {
+            setCurrentSortingType(type);
+            // console.log(type);
+            fetch(
+                `http://localhost:5000/my-toys?email=${user?.email}&sort=${type}`
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    // console.log(data);
+                    setMyToys(data);
+                });
+        }
+    };
+
     return (
         <div className="my-toys mt-[50px] md:mt-[130px] mx-5">
             <div className="hero">
@@ -71,9 +93,35 @@ const MyToys = () => {
                     </div>
                 </div>
             </div>
+            <div className="dropdown mt-10">
+                <label tabIndex={0} className="btn btn-accent">
+                    Sort By Price
+                    <FaSortDown className="relative -top-[2px] ml-1"></FaSortDown>
+                </label>
+                <ul
+                    tabIndex={0}
+                    className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                    <li>
+                        <button onClick={() => handleSort("default")}>
+                            <FaRandom></FaRandom>Default
+                        </button>
+                    </li>
+                    <li>
+                        <button onClick={() => handleSort("ascending")}>
+                            <FaSortAmountDownAlt></FaSortAmountDownAlt>
+                            Ascending
+                        </button>
+                    </li>
+                    <li>
+                        <button onClick={() => handleSort("descending")}>
+                            <FaSortAmountDown></FaSortAmountDown> Descending
+                        </button>
+                    </li>
+                </ul>
+            </div>
             <div className="my-toys-table overflow-x-auto w-full mt-10">
                 <table className="table w-full">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th></th>
