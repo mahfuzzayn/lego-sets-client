@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
+    const bannerRef = useRef();
+
     return (
-        <div className="banner mt-5">
+        <div className="banner mt-5" ref={bannerRef}>
             <div
                 data-aos="fade-up"
                 className="hero"
@@ -23,7 +26,9 @@ const Banner = () => {
                             landmarks to fantastical adventures, our LEGO sets
                             bring your favorite stories and characters to life.
                         </p>
-                        <button className="btn btn-accent">Discover</button>
+                        <Link to="/all-toys">
+                            <button className="btn btn-accent">Discover</button>
+                        </Link>
                     </div>
                 </div>
             </div>

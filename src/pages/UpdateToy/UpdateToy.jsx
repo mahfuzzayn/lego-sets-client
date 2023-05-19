@@ -52,22 +52,33 @@ const UpdateToy = () => {
                         progress: undefined,
                         theme: "light",
                     });
+                } else {
+                    toast.warning(`No changes were made to ${name} toy.`, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                 }
             });
     };
 
     return (
-        <div className="add-a-toy mt-[50px] md:mt-[100px] mx-5">
+        <div className="add-a-toy mt-[50px] md:mt-[100px] md:mx-5">
             <div className="hero">
-                <div className="hero-content w-full flex-col">
+                <div className="hero-content w-full flex-col p-0 sm:p-2 md:p-4">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-4xl md:text-5xl text-center font-bold">
+                        <h1 className="text-4xl md:text-5xl text-center font-bold px-4">
                             Update Toy{" "}
                             <span className="text-accent">{toy?.name}</span>
                         </h1>
                     </div>
                     <div className="card w-full">
-                        <div className="card-body">
+                        <div className="card-body p-4 sm:p-6 md:p-8">
                             <form onSubmit={handleAddAToy}>
                                 <div className="form-control">
                                     <label

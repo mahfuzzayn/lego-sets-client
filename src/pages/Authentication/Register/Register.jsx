@@ -49,10 +49,12 @@ const Register = () => {
     return (
         <div className="login mt-[130px]">
             <div className="hero">
-                <div className="hero-content flex-col lg:flex-row">
+                <div className="hero-content flex-col lg:flex-row p-2 md:p-4">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Please Register</h1>
-                        <p className="py-6">
+                        <h1 className="text-5xl font-bold px-2">
+                            Please Register
+                        </h1>
+                        <p className="px-2 py-6">
                             Welcome to our registration page! We're excited to
                             have you join our community. Creating an account is
                             quick and easy, opening the door to a world of
@@ -62,7 +64,7 @@ const Register = () => {
                         </p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <div className="card-body">
+                        <div className="card-body p-4 sm:p-6 md:p-8">
                             <form onSubmit={handleRegister}>
                                 <div className="form-control">
                                     <label className="label" htmlFor="name">

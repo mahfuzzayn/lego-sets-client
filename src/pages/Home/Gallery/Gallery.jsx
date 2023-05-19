@@ -30,12 +30,19 @@ const Gallery = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 max-w-[1320px] mx-auto place-items-center">
                 {galleryPhotos.map((photo, idx) => (
-                    <div key={idx} className="h-[300px] max-w-[300px] rounded-lg">
+                    <div
+                        data-aos="zoom-in"
+                        key={idx}
+                        className="h-[300px] max-w-[300px] rounded-lg relative"
+                    >
                         <img
                             src={photo}
                             className="h-[300px] object-cover rounded-lg"
                             alt=""
                         />
+                        <p className="absolute bottom-0 w-full bg-[#37cdbe6c]">
+                            Name
+                        </p>
                     </div>
                 ))}
             </div>

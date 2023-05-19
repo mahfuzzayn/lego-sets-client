@@ -128,7 +128,7 @@ const NavBar = () => {
                     userPhotoUrlStatus === "valid" ? (
                         <>
                             <span
-                                className="user-name-tooltip"
+                                className="user-name-tooltip mr-2"
                                 data-tooltip-content={user?.displayName}
                             >
                                 <img
@@ -141,7 +141,7 @@ const NavBar = () => {
                     ) : (
                         <>
                             <span
-                                className="user-name-tooltip"
+                                className="user-name-tooltip mr-2"
                                 data-tooltip-content={user?.displayName}
                             >
                                 <FaUserCircle className="text-[40px]"></FaUserCircle>
@@ -150,7 +150,7 @@ const NavBar = () => {
                         </>
                     )
                 ) : (
-                    <Link to="/login" className="btn btn-accent">
+                    <Link to="/login" className="btn btn-accent mr-2">
                         Login
                     </Link>
                 )}
