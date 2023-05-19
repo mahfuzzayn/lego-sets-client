@@ -9,12 +9,15 @@ import {
     FaSortAmountDownAlt,
     FaSortDown,
 } from "react-icons/fa";
+import './MyToys.css'
 
 const MyToys = () => {
     const { user } = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentSortingType, setCurrentSortingType] = useState("default");
+    const [activeButton, setActiveButton] = useState(1);
+
     useTitle("My Toys");
 
     useEffect(() => {
@@ -70,7 +73,6 @@ const MyToys = () => {
     const handleSort = (type) => {
         if (currentSortingType !== type) {
             setCurrentSortingType(type);
-            // console.log(type);
             fetch(
                 `http://localhost:5000/my-toys?email=${user?.email}&sort=${type}`
             )
@@ -80,6 +82,10 @@ const MyToys = () => {
                     setMyToys(data);
                 });
         }
+    };
+
+    const handleClick = (buttonId) => {
+        setActiveButton(buttonId);
     };
 
     return (
@@ -93,7 +99,7 @@ const MyToys = () => {
                     </div>
                 </div>
             </div>
-            <div className="dropdown mt-10">
+            <div className="sort-by-price dropdown mt-10">
                 <label tabIndex={0} className="btn btn-accent">
                     Sort By Price
                     <FaSortDown className="relative -top-[2px] ml-1"></FaSortDown>
@@ -103,18 +109,36 @@ const MyToys = () => {
                     className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
                     <li>
-                        <button onClick={() => handleSort("default")}>
+                        <button
+                            className={activeButton === 1 ? "btn-active" : ""}
+                            onClick={() => {
+                                handleSort("default");
+                                handleClick(1);
+                            }}
+                        >
                             <FaRandom></FaRandom>Default
                         </button>
                     </li>
                     <li>
-                        <button onClick={() => handleSort("ascending")}>
+                        <button
+                            className={activeButton === 2 ? "btn-active" : ""}
+                            onClick={() => {
+                                handleSort("ascending");
+                                handleClick(2);
+                            }}
+                        >
                             <FaSortAmountDownAlt></FaSortAmountDownAlt>
                             Ascending
                         </button>
                     </li>
                     <li>
-                        <button onClick={() => handleSort("descending")}>
+                        <button
+                            className={activeButton === 3 ? "btn-active" : ""}
+                            onClick={() => {
+                                handleSort("descending");
+                                handleClick(3);
+                            }}
+                        >
                             <FaSortAmountDown></FaSortAmountDown> Descending
                         </button>
                     </li>

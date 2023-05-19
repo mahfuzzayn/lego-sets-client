@@ -123,7 +123,7 @@ const NavBar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">{navLinks}</ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end z-10">
                 {user ? (
                     userPhotoUrlStatus === "valid" ? (
                         <>
