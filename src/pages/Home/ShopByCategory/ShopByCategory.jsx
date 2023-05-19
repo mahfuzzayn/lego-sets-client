@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./ShopByCategory.css";
 import ToyTab from "./ToyTab";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const ShopByCategory = () => {
+    const { user } = useContext(AuthContext);
     const [tabToys, setTabToys] = useState([]);
     const [activeTab, setActiveTab] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -28,6 +31,24 @@ const ShopByCategory = () => {
         };
         fetchData();
     }, [activeTab]);
+
+    const handleUserValidation = (toyName) => {
+        if (!user) {
+            toast.warning(
+                `You must be logged in to View Details of ${toyName} toy.`,
+                {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                }
+            );
+        }
+    };
 
     return (
         <div className="shop-by-category mt-[130px] mx-5">
@@ -83,6 +104,9 @@ const ShopByCategory = () => {
                                             <ToyTab
                                                 key={toy._id}
                                                 toy={toy}
+                                                handleUserValidation={
+                                                    handleUserValidation
+                                                }
                                             ></ToyTab>
                                         ))}
                                     </div>

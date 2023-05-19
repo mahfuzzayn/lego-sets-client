@@ -2,13 +2,12 @@ import { Rating } from "@smastrom/react-rating";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ToyTab = ({ toy }) => {
+const ToyTab = ({ toy, handleUserValidation }) => {
     const { _id, photoURL, name, price, rating } = toy;
 
     return (
         <div className="toy flex justify-center">
             <div
-                data-aos="flip-right"
                 className="card card-compact w-96 bg-base-100 shadow-lg"
             >
                 <figure>
@@ -33,7 +32,10 @@ const ToyTab = ({ toy }) => {
                     </div>
                     <div className="card-actions justify-end">
                         <Link to={`/toy/${_id}`}>
-                            <button className="btn btn-accent mt-4">
+                            <button
+                                onClick={() => handleUserValidation(name)}
+                                className="btn btn-accent mt-4"
+                            >
                                 View Details
                             </button>
                         </Link>
