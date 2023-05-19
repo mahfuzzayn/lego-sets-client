@@ -98,6 +98,7 @@ const Explore = () => {
                     </div>
                 </div>
             </div>
+            <div className="divider mt-[130px]"></div>
         </div>
     );
 };
