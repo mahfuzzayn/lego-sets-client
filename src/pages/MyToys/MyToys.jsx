@@ -9,7 +9,8 @@ import {
     FaSortAmountDownAlt,
     FaSortDown,
 } from "react-icons/fa";
-import './MyToys.css'
+import "./MyToys.css";
+import { toast } from "react-toastify";
 
 const MyToys = () => {
     const { user } = useContext(AuthContext);
@@ -80,6 +81,16 @@ const MyToys = () => {
                 .then((data) => {
                     // console.log(data);
                     setMyToys(data);
+                    toast.success(`Sorting changed to ${type}.`, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                 });
         }
     };
