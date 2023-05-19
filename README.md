@@ -1,4 +1,4 @@
-# Lego Sets
+# Lego Sets - Client
 
 Live site: https://lego-sets-be767.web.app/
 
