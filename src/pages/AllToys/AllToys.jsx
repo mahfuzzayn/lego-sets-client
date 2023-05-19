@@ -11,7 +11,7 @@ const AllToys = () => {
     useTitle("All Toys");
 
     useEffect(() => {
-        fetch("http://localhost:5000/all-toys")
+        fetch("https://lego-sets-server.vercel.app/all-toys")
             .then((res) => res.json())
             .then((data) => {
                 setAllToys(data);

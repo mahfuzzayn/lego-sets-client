@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
@@ -19,6 +19,14 @@ const Toy = () => {
     } = toy;
     // console.log(toy);
     useTitle(`Toy - ${name}`);
+
+    // Automatically Get user to the top
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
 
     return (
         <div className="toy mt-[50px] md:mt-[100px] mx-5">

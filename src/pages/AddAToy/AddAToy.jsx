@@ -33,7 +33,7 @@ const AddAToy = () => {
         };
         // console.log(toy);
 
-        fetch("http://localhost:5000/add-a-toy", {
+        fetch("https://lego-sets-server.vercel.app/add-a-toy", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

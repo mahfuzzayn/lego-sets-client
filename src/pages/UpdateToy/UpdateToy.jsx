@@ -31,7 +31,7 @@ const UpdateToy = () => {
         };
         // console.log(updatedToy);
 
-        fetch(`http://localhost:5000/all-toys/${toy._id}`, {
+        fetch(`https://lego-sets-server.vercel.app/all-toys/${toy._id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
@@ -256,7 +256,7 @@ const UpdateToy = () => {
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-accent">
-                                        Add Toy
+                                        Update Toy
                                     </button>
                                 </div>
                             </form>

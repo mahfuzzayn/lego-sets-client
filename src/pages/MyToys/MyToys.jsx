@@ -22,7 +22,7 @@ const MyToys = () => {
     useTitle("My Toys");
 
     useEffect(() => {
-        fetch(`http://localhost:5000/my-toys?email=${user?.email}`)
+        fetch(`https://lego-sets-server.vercel.app/my-toys?email=${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setMyToys(data);
@@ -49,7 +49,7 @@ const MyToys = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/all-toys/${_id}`, {
+                fetch(`https://lego-sets-server.vercel.app/all-toys/${_id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())
@@ -75,7 +75,7 @@ const MyToys = () => {
         if (currentSortingType !== type) {
             setCurrentSortingType(type);
             fetch(
-                `http://localhost:5000/my-toys?email=${user?.email}&sort=${type}`
+                `https://lego-sets-server.vercel.app/my-toys?email=${user?.email}&sort=${type}`
             )
                 .then((res) => res.json())
                 .then((data) => {

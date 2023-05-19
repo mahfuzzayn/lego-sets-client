@@ -62,7 +62,7 @@ const router = createBrowserRouter([
                     </PrivateRoute>
                 ),
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/toy/${params.id}`),
+                    fetch(`https://lego-sets-server.vercel.app/toy/${params.id}`),
             },
             {
                 path: "/toy/:id",
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
                     </PrivateRoute>
                 ),
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/toy/${params.id}`),
+                    fetch(`https://lego-sets-server.vercel.app/toy/${params.id}`),
             },
         ],
     },{

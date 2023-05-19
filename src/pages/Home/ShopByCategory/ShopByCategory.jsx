@@ -16,7 +16,7 @@ const ShopByCategory = () => {
             try {
                 setLoading(true);
                 const response = await fetch(
-                    `http://localhost:5000/all-toys?sub_category=${shopByCategories[activeTab]}&limit=6`
+                    `https://lego-sets-server.vercel.app/all-toys?sub_category=${shopByCategories[activeTab]}&limit=6`
                 );
                 const data = await response.json();
                 // console.log(data);
