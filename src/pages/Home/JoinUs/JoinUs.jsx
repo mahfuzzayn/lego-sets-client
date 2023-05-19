@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const JoinUs = () => {
     return (
-        <div className="carousel-section mt-[130px] mx-5">
+        <div className="join-us mt-[130px] mx-5">
             <div className="flex flex-col md:flex-row-reverse justify-center items-center gap-10">
                 <div className="carousel h- w-full max-w-[768px] rounded-xl">
                     <div id="slide1" className="carousel-item relative w-full">
@@ -87,7 +87,7 @@ const JoinUs = () => {
                         </div>
                     </div>
                 </div>
-                <div className="">
+                <div>
                     <div className="hero-content text-center md:text-left">
                         <div className="max-w-md">
                             <h1 className="text-4xl md:text-5xl font-bold">

@@ -160,6 +160,7 @@ const AddAToy = () => {
                                         <option>Lego City</option>
                                         <option>Lego Star Wars</option>
                                         <option>Lego Cars</option>
+                                        <option>Lego Architecture</option>
                                     </select>
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-x-4">
