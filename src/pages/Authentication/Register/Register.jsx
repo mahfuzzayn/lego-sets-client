@@ -18,7 +18,7 @@ const Register = () => {
         const password = form.password.value;
         const photoURL = form.photoURL.value;
 
-        console.log(name, email, password, photoURL);
+        // console.log(name, email, password, photoURL);
 
         setSuccess("");
         setError("");

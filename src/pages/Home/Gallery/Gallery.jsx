@@ -12,6 +12,16 @@ const Gallery = () => {
         "https://i.ibb.co/Vx0y5TL/lego-sets-may-2023-1682964669142.png",
         "https://i.ibb.co/ZGNNBs4/125879202-legorussia.jpg",
     ];
+    const galleryPhotoNames = [
+        "Lego Robots",
+        "Lego Happy Couples",
+        "Lego Workers",
+        "Lego Engineer",
+        "Lego FBI",
+        "Lego Community",
+        "Lego Cartoon",
+        "Lego Blocks",
+    ];
 
     return (
         <div className="gallery mt-[130px] mx-5">
@@ -40,8 +50,8 @@ const Gallery = () => {
                             className="h-[300px] object-cover rounded-lg"
                             alt=""
                         />
-                        <p className="absolute bottom-0 w-full bg-[#37cdbe6c]">
-                            Name
+                        <p className="absolute bottom-0 w-full bg-[#37cdbee4] rounded-lg rounded-tl-none rounded-tr-none p-3 text-white">
+                            {galleryPhotoNames[idx]}
                         </p>
                     </div>
                 ))}
