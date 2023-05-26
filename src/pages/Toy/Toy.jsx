@@ -32,7 +32,7 @@ const Toy = () => {
         <div className="toy mt-[50px] md:mt-[100px] mx-5">
             <div className="content">
                 <div className="top-section lg:max-h-[500px] flex flex-col lg:flex-row justify-center">
-                    <div className="box h-[200px] sm:h-[300px] md:h-[400px] lg:h-auto w-full bg-accent flex justify-center items-center">
+                    <div className="box h-[200px] sm:h-[300px] md:h-[400px] lg:h-auto w-full bg-accent flex justify-center items-center p-4">
                         <div>
                             <h1 className="text-3xl md:text-4xl font-bold">
                                 {name}

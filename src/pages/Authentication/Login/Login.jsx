@@ -31,7 +31,7 @@ const Login = () => {
                 const user = result.user;
                 setSuccess("User logged in successfully.");
                 form.reset();
-                console.log(user);
+                // console.log(user);
                 navigate(from, { replace: true });
             })
             .catch((error) => {

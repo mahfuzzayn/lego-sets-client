@@ -42,7 +42,7 @@ const AddAToy = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 if (data.insertedId) {
                     form.reset();
                     toast.success(`${name} toy added successfully.`, {

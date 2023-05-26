@@ -11,7 +11,7 @@ const ThirdPartyLogIn = ({ setSuccess, setError, from }) => {
             .then((result) => {
                 const user = result.user;
                 setSuccess("User successfully signed in using Google.");
-                console.log(user);
+                // console.log(user);
                 {
                     from && navigate(from, { replace: true });
                 }

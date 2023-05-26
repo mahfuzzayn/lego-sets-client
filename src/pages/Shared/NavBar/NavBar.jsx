@@ -6,9 +6,10 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 import { useValidateImageURL } from "use-validate-image-url";
 import { Tooltip } from "react-tooltip";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOutUser } = useContext(AuthContext);
     const userPhotoUrlStatus = useValidateImageURL(user?.photoURL);
 
     const navLinks = (
@@ -90,9 +91,21 @@ const NavBar = () => {
         </>
     );
 
+    const handleLogOut = () => {
+        logOutUser()
+            .then(() => {
+                Swal.fire(
+                    "Logged Out",
+                    "You have been successfully logged out.",
+                    "success"
+                );
+            })
+            .catch((error) => console.log(error));
+    };
+
     return (
-        <div className="navbar bg-base-100 mt-5">
-            <div className="navbar-start">
+        <div className="navbar bg-base-100 mt-5 flex-col sm:flex-row items-start gap-y-6">
+            <div className="sm:navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg
@@ -123,30 +136,46 @@ const NavBar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">{navLinks}</ul>
             </div>
-            <div className="navbar-end z-10">
+            <div className="sm:navbar-end z-10 ml-4 sm:ml-0">
                 {user ? (
                     userPhotoUrlStatus === "valid" ? (
                         <>
-                            <span
-                                className="user-name-tooltip mr-2"
-                                data-tooltip-content={user?.displayName}
-                            >
-                                <img
-                                    src={user?.photoURL}
-                                    className="w-[40px] rounded-full"
-                                ></img>
-                            </span>
-                            <Tooltip anchorSelect=".user-name-tooltip" />
+                            <div className="flex items-center gap-x-2">
+                                <span
+                                    className="user-name-tooltip  mr-2"
+                                    data-tooltip-content={user?.displayName}
+                                >
+                                    <img
+                                        src={user?.photoURL}
+                                        className="h-[40px] w-[40px] rounded-full"
+                                    ></img>
+                                </span>
+                                <button
+                                    onClick={handleLogOut}
+                                    className="btn btn-accent"
+                                >
+                                    Log Out
+                                </button>
+                                <Tooltip anchorSelect=".user-name-tooltip" />
+                            </div>
                         </>
                     ) : (
                         <>
-                            <span
-                                className="user-name-tooltip mr-2"
-                                data-tooltip-content={user?.displayName}
-                            >
-                                <FaUserCircle className="text-[40px]"></FaUserCircle>
-                            </span>
-                            <Tooltip anchorSelect=".user-name-tooltip" />
+                            <div className="flex items-center gap-x-2">
+                                <span
+                                    className="user-name-tooltip mr-2"
+                                    data-tooltip-content={user?.displayName}
+                                >
+                                    <FaUserCircle className="text-[40px]"></FaUserCircle>
+                                </span>
+                                <button
+                                    onClick={handleLogOut}
+                                    className="btn btn-accent"
+                                >
+                                    Log Out
+                                </button>
+                                <Tooltip anchorSelect=".user-name-tooltip" />
+                            </div>
                         </>
                     )
                 ) : (
